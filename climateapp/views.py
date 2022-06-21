@@ -1,5 +1,6 @@
 from django.shortcuts import render
 import requests
+import datetime
 
 # Create your views here.
 def index(request):
@@ -10,8 +11,10 @@ def index(request):
     res = r.json()
     description = res['weather'][0]['description']
     icon = res['weather'][0]['icon']
-    temp = res['main'][0]['temp']
+    temp = res['main']['temp']
+
+    day = datetime.date.today()
     
 
 
-    return render(request, 'weather/index.html',{'num': num})
+    return render(request, 'weather/index.html',{'description': description, 'icon':icon,'temp':temp, 'day':day})
