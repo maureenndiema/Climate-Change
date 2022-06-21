@@ -4,6 +4,13 @@ import datetime
 
 # Create your views here.
 def index(request):
+    if 'city' in request.POST:
+        city= request.POST['city']
+    else:
+        city = 'Nairobi'
+
+
+
     appid ='ffef4e2d3fc816c6a280afaf80fe6d74'
     URL ='https://api.openweathermap.org/data/2.5/weather'
     PARAMS = {'q':'Nairobi','appid':appid, 'lat':'lat', 'lon':'lon', 'units':'metric' }
@@ -17,4 +24,4 @@ def index(request):
     
 
 
-    return render(request, 'weather/index.html',{'description': description, 'icon':icon,'temp':temp, 'day':day})
+    return render(request, 'weather/index.html',{'description': description, 'icon':icon,'temp':temp, 'day':day, 'city':city})
